@@ -1,9 +1,9 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 export const  AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
-    const user = {name:'asif'};
-    const authInfo = {user}
+     const [dark,setdark] = useState('white')
+    const authInfo = {dark,setdark}
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
