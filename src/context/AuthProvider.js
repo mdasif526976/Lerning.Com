@@ -3,6 +3,7 @@ export const  AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
      const [dark,setdark] = useState('white')
+     
     const authInfo = {dark,setdark}
     return (
         <AuthContext.Provider value={authInfo}>
