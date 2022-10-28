@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
+
 const Login = () => {
+ const [error,setError] = useState(null)
     const {setNewuser,login,githubSign,googleSignIn} = useContext(AuthContext)
     const [user,setuser]= useState({
         password:'',
@@ -10,18 +12,29 @@ const Login = () => {
      })
       const getUserData =(event)=>{
         setuser({...user,[event.target.name]:event.target.value})
-        console.log(user)
       }
+
+      const navigate = useNavigate();
+      const location = useLocation();
+      const from = location.state?.from?.pathname || '/';
       const onsubmit =()=>{
         const password = user.password;
         const email = user.email;
+        
         login(email,password)
         .then(result=>{
             const user = result.user;
-            console.log(user)
              setNewuser(user)
+             navigate(from,{replace:true})
+               setuser(null)
         })
-        .catch(error=>{console.error(error)})
+        .catch(error=>{
+          console.error(error)
+          setError('you are not verifyed user') 
+        
+        }) 
+           
+        
       }
     return (
         <div>
@@ -43,7 +56,9 @@ const Login = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" onChange={getUserData} value={user.password} name='password' placeholder="Enter your password" className="input input-bordered" />
+          <input type="password" onChange={getUserData} value={user.password} name='password'
+           placeholder="Enter your password" className="input input-bordered" />
+            <p className='py-2 text-red-600'>{error}</p>
           <label className="label">
             <button className="label-text-alt link link-hover">Forgot password?</button>
             <Link to="/signup" className="label-text-alt link link-hover">Don't have a account?</Link>

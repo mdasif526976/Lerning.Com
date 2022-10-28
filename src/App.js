@@ -9,6 +9,8 @@ import SignUp from './component/signup/SignUp';
 import Course from './component/course/Course';
 import About from './component/about/About';
 import Errorpage from './component/errorpage/Errorpage';
+import Premium from './component/premium/Premium';
+import PrivateRouter from './component/privateRouter/PrivateRouter';
 
 function App() {
   const router = createBrowserRouter([
@@ -41,6 +43,10 @@ function App() {
         {
           path:'/login',
           element:<Login></Login>
+        },
+        {
+          path:'/premium',
+          element:<PrivateRouter><Premium></Premium></PrivateRouter>
         },
         {
           path:'/faq',

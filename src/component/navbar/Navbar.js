@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Navbar = () => {
-  const { user, signOunt } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -81,15 +81,13 @@ const Navbar = () => {
         <ul className=" items-center hidden space-x-8 lg:flex">
           {user?.uid ? <>
             <li>
-              <Link
-                to=""
-                onClick={signOunt}
+              <button
+                onClick={logout}
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide  transition duration-200 rounded  hover:bg-sky-700 hover:text-white focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
+            
               >
                 Log out
-              </Link>
+              </button>
             </li>
             <li>
               <div className="tooltip tooltip-bottom flex space-x-5" data-tip={user?.displayName}>
@@ -260,15 +258,13 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      onClick={signOunt}
-                      to=''
+                    <button
+                      onClick={logout}
                       className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-white hover:bg-sky-500 py-2 px-28 rounded"
-                      aria-label="Sign up"
-                      title="Sign up"
+                      
                     >
                       LogOut
-                    </Link>
+                    </button>
                   </li>
                   <li>
                     <label for="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-100">
