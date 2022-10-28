@@ -1,12 +1,10 @@
 import React from 'react';
 
-const Catagori = ({ p ,handle}) => {
+const Catagori = ({p,handle}) => {
     return (
         <div>
-            <ul className="menu bg-base-100 w-56 p-2 rounded-box">
-
-                <li> <button onClick={()=>handle(p.id)}><p>{p.name}</p></button></li>
-            </ul>
+           
+                <li className=''> <button onClick={()=> handle(p.id)}><p>{p.name}</p></button></li>
         </div>
 
 

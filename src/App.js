@@ -6,6 +6,9 @@ import Catagoris from './component/catagoris/Catagoris'
 import Main from './layout/Main';
 import Login from './component/Login/Login';
 import SignUp from './component/signup/SignUp';
+import Course from './component/course/Course';
+import About from './component/about/About';
+import Errorpage from './component/errorpage/Errorpage';
 
 function App() {
   const router = createBrowserRouter([
@@ -27,11 +30,21 @@ function App() {
         },
         {
           path:'/catagoris',
-          element:<Catagoris></Catagoris>
+          element:<Catagoris></Catagoris>,
+          loader:()=>fetch(' https://assignment-server-kohl.vercel.app/courses/6')
+        },
+        {
+          path:'/course/:id',
+          element:<Course></Course>,
+          loader:({params})=>fetch(` https://assignment-server-kohl.vercel.app/course/${params.id}`)
         },
         {
           path:'/login',
           element:<Login></Login>
+        },
+        {
+          path:'/faq',
+          element:<About></About>
         },
         {
           path:'/catagoris',
@@ -39,6 +52,11 @@ function App() {
         }
         
       ]
+      
+    }
+    ,{
+      path:'*',
+      element:<Errorpage></Errorpage>
     }
 
         

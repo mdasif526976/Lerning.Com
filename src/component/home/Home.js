@@ -29,7 +29,7 @@ const Home = () => {
             Lerning.Com
            
           </h2>
-          <p className="pr-5 mb-5 text-base text-gray-700 md:text-lg">
+          <p className="pr-5 mb-5 text-base dark:text-white text-gray-700 md:text-lg">
           Lerning.Com is a skill devlopment company. Which is devlop your skill for outsourcing & freelance. If you need to devlop your skill so not for delay Get Start .
           </p>
           <div className="">
