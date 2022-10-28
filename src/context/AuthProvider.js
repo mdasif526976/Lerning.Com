@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
     const [user, setNewuser] = useState(null)
     const [loading,setloading] = useState(true)
     const [dark, setdark] = useState('white')
+  
     
     const githubSign = () => {
         const provider = new GithubAuthProvider();

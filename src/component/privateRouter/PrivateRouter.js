@@ -10,7 +10,7 @@ const PrivateRouter = ({children}) => {
          border-sky-400 rounded-full animate-spin dark:border-violet-400"></div>
     }
     if (!user) {
-        return <Navigate to='/login' state={{from:location}} replace></Navigate>
+        return <Navigate to='/login' state={{form:location}} replace></Navigate>
     }
     return children;
    

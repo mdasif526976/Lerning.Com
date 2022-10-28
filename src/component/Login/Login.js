@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 
@@ -14,9 +14,12 @@ const Login = () => {
         setuser({...user,[event.target.name]:event.target.value})
       }
 
-      const navigate = useNavigate();
       const location = useLocation();
-      const from = location.state?.from?.pathname || '/';
+      
+      const from = location.state?.form?.pathname || '/';
+      const navigate = useNavigate();
+    
+      
       const onsubmit =()=>{
         const password = user.password;
         const email = user.email;
@@ -26,13 +29,16 @@ const Login = () => {
             const user = result.user;
              setNewuser(user)
              navigate(from,{replace:true})
-               setuser(null)
         })
         .catch(error=>{
           console.error(error)
           setError('you are not verifyed user') 
         
         }) 
+
+
+        setuser(null)
+
            
         
       }
@@ -50,13 +56,13 @@ const Login = () => {
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="text" onChange={getUserData} value={user.email} name='email' placeholder="Enter your email" className="input input-bordered" />
+          <input type="text" onChange={getUserData} value={user?.email} name='email' placeholder="Enter your email" className="input input-bordered" />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" onChange={getUserData} value={user.password} name='password'
+          <input type="password" onChange={getUserData} value={user?.password} name='password'
            placeholder="Enter your password" className="input input-bordered" />
             <p className='py-2 text-red-600'>{error}</p>
           <label className="label">
