@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const SignUp = () => {
@@ -9,9 +9,9 @@ const SignUp = () => {
     email:'',
     img:''
  })
+ const navigate = useNavigate();
   const getUserData =(event)=>{
     setuser({...user,[event.target.name]:event.target.value})
-    console.log(user)
   }
   const submit=()=>{
     const name = user.name;
@@ -21,15 +21,15 @@ const SignUp = () => {
     signup(email,password)
     .then(result=>{
         const user = result.user;
-        console.log(user)
         setNewuser(user)
         updateUser(name,img)
-        setuser(null)
+        navigate('/')
     })
     .catch(error=>{
         console.error(error)
     })
-    
+    setuser(null)
+
   }
 
     return (
